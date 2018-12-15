@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "quiz",
+    "password": "quiz",
+    "database": "quiz",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "quiz",
+    "password": "quiz",
+    "database": "quiz",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "quiz",
+    "password": "quiz",
+    "database": "quiz",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "operatorsAliases": false
+  }
+}
