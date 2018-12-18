@@ -1,5 +1,5 @@
 const express = require('express');
-const models = require('../models');
+const models = require('../../models/index');
 const router = express.Router();
 
 router.get('/movies', (req, res)=>{
@@ -46,13 +46,14 @@ function getOptions(frames) {
 }
 
 function mapFrames(frames){
+    let staticPath = 'http://localhost:3000/frames/';
   let mappedFrames = [];
   for (let i = 0; i < frames.length; i++){
     mappedFrames.push({
         id: frames[i].id,
         answer: frames[i].Movie.title,
         answer_id: frames[i].MovieId,
-        image: frames[i].name
+        image: staticPath + frames[i].name
     })
   }
   return mappedFrames;
