@@ -9,7 +9,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       username: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       firstName: {
         type: Sequelize.STRING
@@ -18,16 +19,18 @@ module.exports = {
         type: Sequelize.STRING
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       hash: {
         type: Sequelize.STRING
       },
-      salt: {
-        type: Sequelize.STRING
-      },
       lastLogin: {
         type: Sequelize.DATE
+      },
+      isAdmin: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       },
       createdAt: {
         allowNull: false,

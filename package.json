@@ -11,18 +11,19 @@
   "dependencies": {
     "bcrypt": "^3.0.2",
     "body-parser": "latest",
-    "connect-redis": "^3.4.0",
+    "config": "^3.0.1",
     "cors": "^2.8.5",
     "express": "^4.16.4",
     "express-fileupload": "^1.0.0",
-    "express-handlebars": "^3.0.0",
     "express-session": "^1.15.6",
+    "jsonwebtoken": "^8.4.0",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^7.7.1",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.41.2",
-    "sequelize-cli": "^5.4.0"
+    "sequelize-cli": "^5.4.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "ws": "^6.1.2"
