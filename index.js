@@ -6,7 +6,7 @@ const cors = require('cors');
 const fileUpload = require('express-fileupload');
 
 const app = express();
-
+app.use(cors());
 //Initializing authentication
 require('./passport')(app);
 
@@ -23,8 +23,6 @@ app.use(fileUpload());
 
 // app.use(express.static(path.join(__dirname, 'dist')));
 app.use(passport.initialize());
-app.use(cors());
-
 
 app.use('/api', api);
 app.use('/api/auth', auth);
