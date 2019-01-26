@@ -7,6 +7,7 @@ const passport = require('passport');
 router.post('/login', userLogin);
 router.post('/register', userSignUp);
 router.post('/refresh', auth, refreshToken);
+router.get('/token', auth, validateToken);
 
 function userLogin(req, res, next){
   passport.authenticate('local', function(err, user, info) {
@@ -52,6 +53,10 @@ function refreshToken(req, res){
   } else {
     res.status(200).send()
   }
-
 }
+
+function validateToken(req, res){
+  res.send({'message': true})
+}
+
 module.exports = router;

@@ -126,7 +126,7 @@ function deleteFrame(req, res) {
 
 function getMovie(req, res) {
   models.Movie.findByPk(req.params.movieId, {
-    attributes: ['title', 'internationalTitle', 'year'],
+    attributes: ['id', 'title', 'internationalTitle', 'year'],
     include: [{
       model: models.Frame,
       attributes: ['name', 'id']
@@ -159,14 +159,21 @@ function getFrame(req, res) {
 }
 
 function editMovie(req, res) {
-  models.Movie.findByPk(req.params.movieId, {
-    attributes: ['title', 'internationalTitle', 'year'],
-    include: [{
-      model: models.Frame,
-      attributes: ['name', 'id']
-    }]
+  models.Movie.update({
+    'title': req.body.title,
+    'internationalTitle': req.body.internationalTitle,
+    'year': req.body.year
+  },{
+    where: {
+      id: req.params.movieId
+    }
   }).then((movie) => {
-    res.send({movie});
+    if (movie) {
+      res.send({message: 'Successfully updated the movie.'});
+    }
+    else {
+      res.send({message: 'Failed to update movie.'});
+    }
   });
 }
 
