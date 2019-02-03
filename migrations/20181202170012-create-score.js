@@ -26,13 +26,15 @@ module.exports = {
         defaultValue: Sequelize.fn('NOW'),
         type: Sequelize.DATE
       },
-      user_id: {
-         type: Sequelize.INTEGER,
-         references: {
-            model: 'Users',
-            key: 'id'
-         }
-      }
+      UserId: {
+        type: Sequelize.INTEGER,
+        onDelete: "CASCADE",
+        allowNull: false,
+        references: {
+          model: 'Users',
+          key: 'id'
+          }
+        }
     });
   },
   down: (queryInterface, Sequelize) => {

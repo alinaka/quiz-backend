@@ -14,6 +14,7 @@ require('./passport')(app);
 const auth = require('./routes/auth');
 const api = require('./routes/api');
 const admin = require('./routes/admin');
+const users = require('./routes/users');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -27,6 +28,7 @@ app.use(passport.initialize());
 app.use('/api', api);
 app.use('/api/auth', auth);
 app.use('/api/admin', admin);
+app.use('/api/users', users);
 
 // app.get('/', function (req, res, next) {
 //   res.sendFile(path.join(__dirname, 'dist/index.html'));

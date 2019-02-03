@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
     isAdmin: DataTypes.BOOLEAN
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    models.User.hasMany(models.Score);
   };
   User.prototype.generateAuthToken = function() {
     return jwt.sign({subject: this.id,

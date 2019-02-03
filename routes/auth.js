@@ -16,7 +16,7 @@ function userLogin(req, res, next){
     req.logIn(user, function(err) {
       if (err) { return next(err); }
       let token = user.generateAuthToken();
-      return res.status(200).send({token});
+      return res.status(200).send({token, user, isAdmin: user.isAdmin});
     });
   })(req, res, next);
 }
@@ -33,7 +33,7 @@ function userSignUp(req, res){
           res.status(500).send('An error occurred while signing up.')
       }
       let token = user.generateAuthToken();
-      res.status(201).send({token, 'message': 'Successfully signed up.'});
+      res.status(201).send({token, user, 'message': 'Successfully signed up.'});
     }).catch((err)=>{
       res.status(400).send({'error': `User with username ${err.errors[0].value} already exists.`})
     })

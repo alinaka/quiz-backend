@@ -5,7 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     time: DataTypes.TIME
   }, {});
   Score.associate = function(models) {
-    // associations can be defined here
+    models.Score.belongsTo(models.User, {
+          onDelete: "CASCADE",
+          foreignKey: {
+              allowNull: false
+          }
+      });
   };
   return Score;
 };
