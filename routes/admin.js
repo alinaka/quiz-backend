@@ -14,6 +14,7 @@ router.post('/upload', [auth, admin], uploadFile);
 router.get('/movies', [auth, admin], getAllMovies);
 router.get('/frames', [auth, admin], getAllFrames);
 router.delete('/movie/:movieId', [auth, admin], deleteMovie);
+router.post('/movie', [auth, admin], createMovie);
 router.get('/movie/:movieId', [auth, admin], getMovie);
 router.put('/movie/:movieId', [auth, admin], editMovie);
 
@@ -71,7 +72,7 @@ function createFrame(movie, sampleFile) {
       if (err)
         reject(err);
       models.Frame.create({name: filename, MovieId: movie.id}).then((frame) => {
-        resolve({message: 'Frame is successfully uploaded! FrameId ' + frame.id});
+        resolve({frame, message: 'Frame is successfully uploaded! FrameId ' + frame.id});
       });
     })
   });
@@ -175,6 +176,21 @@ function editMovie(req, res) {
       res.send({message: 'Failed to update movie.'});
     }
   });
+}
+
+function createMovie(req, res){
+  models.Movie.create({
+    'title': req.body.title,
+    'internationalTitle': req.body.internationalTitle,
+    'year': req.body.year
+  }).then((movie)=>{
+      if (movie) {
+        res.send({movie, message: 'Successfully added movie.'});
+      }
+      else {
+        res.send({message: 'Failed to update movie.'});
+      }
+  })
 }
 
 module.exports = router;

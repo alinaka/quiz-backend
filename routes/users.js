@@ -5,6 +5,7 @@ const auth = require('../middleware/auth');
 
 
 router.post('/score', auth, saveScore);
+router.get('/score', auth, getAllScores);
 
 function saveScore(req, res) {
 	let result = req.body;
@@ -22,6 +23,23 @@ function saveScore(req, res) {
       res.status(400).send({'error': err})
     })
   }
+}
+
+function getAllScores(req, res) {
+  models.Score.findAll({
+    include: [{
+      model: models.User,
+      attributes: ['username']
+    }],
+    order: [['count', 'DESC'], ['time', 'ASC']],
+  }).then((scores) => {
+    if (!scores) {
+      res.status(500).send('An error occurred while saving score.')
+    }
+    res.status(200).send({scores});
+  }).catch((err)=>{
+    res.status(400).send({'error': err})
+  })
 }
 
 module.exports = router;
