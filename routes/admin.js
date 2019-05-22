@@ -36,6 +36,9 @@ function renderForm(req, res) {
 }
 
 function uploadFile(req, res, next) {
+  console.log(req.files);
+  console.log(req.files.frame);
+  console.log(req.body);
   if (Object.keys(req.files).length === 0) {
     return res.status(400).send('No files were uploaded.');
   }

@@ -1,6 +1,7 @@
 const express = require('express');
 const models = require('../models');
 const router = express.Router();
+const URL = process.env.URL || 'http://localhost:3000/';
 
 router.get('/movies', (req, res) => {
     models.Frame.findAll({
@@ -57,7 +58,7 @@ function getOptions(frames) {
 }
 
 function mapFrames(frames) {
-    let staticPath = 'http://localhost:3000/frames/';
+    let staticPath = URL + 'frames/';
     let mappedFrames = [];
     for (let i = 0; i < frames.length; i++) {
         mappedFrames.push({
